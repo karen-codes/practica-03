@@ -50,7 +50,7 @@ poetry.lock
 
 # --- Archivos generados por pruebas ---
 .coverage
-htmlcov/
+#htmlcov/
 .tox/
 nosetests.xml
 pytest.xml
