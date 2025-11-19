@@ -13,12 +13,9 @@ class Analizador:
         with open(self.ruta_csv, "r", encoding="utf-8") as archivo:
             lector = csv.DictReader(archivo, delimiter='|')
             for fila in lector:
-                try:
-                    # Aseguramos que las columnas necesarias existan
-                    if "PROVINCIA" in fila and "TOTAL_VENTAS" in fila:
-                        datos.append(fila)
-                except KeyError:
-                    continue  # Ignora filas mal formadas
+                # Validamos que existan las columnas necesarias
+                if "PROVINCIA" in fila and "TOTAL_VENTAS" in fila:
+                    datos.append(fila)
         return datos
 
     def ventas_totales_por_provincia(self):
@@ -30,7 +27,7 @@ class Analizador:
 
         # Recorremos todas las filas del archivo
         for fila in self.datos:
-            provincia = fila["PROVINCIA"]
+            provincia = fila["PROVINCIA"].upper()   # normalizamos
             try:
                 total_venta = float(fila["TOTAL_VENTAS"])
             except ValueError:
@@ -44,12 +41,15 @@ class Analizador:
     def ventas_por_provincia(self, nombre):
         """
         Devuelve el total de ventas de una provincia específica.
-        Ejemplo: ventas_por_provincia("Guayas") -> 2000.5
+        Lanza KeyError si la provincia no existe.
         """
         totales = self.ventas_totales_por_provincia()
 
-        # Verificamos si la provincia está en los totales
-        if nombre in totales:
-            return totales[nombre]
-        else:
-            return 0.0  # Si la provincia no tiene ventas, retornamos 0.0
+        # Normalizamos el nombre ingresado por el usuario
+        nombre_normalizado = nombre.upper()
+
+        # Verificamos si la provincia existe
+        if nombre_normalizado not in totales:
+            raise KeyError(f"La provincia '{nombre}' no existe en el dataset.")
+
+        return totales[nombre_normalizado]
