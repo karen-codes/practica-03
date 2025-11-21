@@ -1,103 +1,88 @@
-# 🧪 Práctica 03 – Pruebas Automatizadas y Cobertura de Código
-
-Este proyecto corresponde a la **Práctica 03 de la asignatura Gestión de la Calidad de Software**, donde se implementan funciones de análisis tributario usando Python, se construyen pruebas unitarias con `unittest` y se mide la cobertura del código mediante `coverage`.
-
----
-
-## 📁 Estructura del Proyecto
-
-PRACTICA-03/
-│── app.py
-│── README.md
-│── .gitignore
-│── .coverage
-│── datos/
-│ └── sri_ventas_2024.csv
-│── src/
-│ ├── procesador.py
-│ └── init.py
-│── tests/
-│ ├── test_procesador.py
-│ └── init.py
-│── htmlcov/
-│ ├── index.html
-│ ├── style_cb_8432e98f.css
-│ ├── coverage_html_cb_bcae5fc4.js
-│ ├── status.json
-│ └── (otros archivos generados por coverage)
-│── venv/
-│ ├── bin/
-│ ├── lib/
-│ └── (entorno virtual)
-
-
----
-
-## ⚙️ Instalación y Configuración
-
-### 1️⃣ Crear entorno virtual
-
-```bash
-python3 -m venv venv
-source venv/bin/activate
-
-2️⃣ Instalar herramienta de cobertura
-
-pip install coverage
-
-🧪 Ejecución de Pruebas Unitarias
-
-python3 -m unittest discover
-
-📊 Medición de Cobertura
-Ejecutar coverage
-
-coverage run -m unittest discover
-coverage report
-
-Generar reporte HTML
-
-coverage html
-
-El archivo principal del reporte está en:
-
-htmlcov/index.html
-
-📈 Resumen de Cobertura Obtenido
-
-Name                       Stmts   Miss  Cover
-----------------------------------------------
-src/procesador.py             29      2    93%
-tests/test_procesador.py      22      0   100%
-----------------------------------------------
-TOTAL                         51      2    96%
-
-📌 Cobertura total del proyecto: 96%
-🧠 Funciones Principales
-✔ ventas_totales_por_provincia()
-
-Devuelve un diccionario donde cada clave es una provincia y el valor es el total de ventas registradas.
-✔ ventas_por_provincia(nombre)
-
-Retorna el total de ventas para una provincia indicada.
-Lanza KeyError si la provincia no existe en los datos.
-🧪 Pruebas Implementadas
-
-Las pruebas unitarias verifican que:
-
-    El resumen total sea un diccionario.
-
-    Existan 24 provincias.
-
-    Todas las ventas sean mayores a 5000.
-
-    Se lance error para provincias inexistentes.
-
-    Provincias válidas devuelvan valores positivos.
-
-👩‍💻 Autora
+README – Práctica 03 (Pruebas Automatizadas)
 
 Karen Dayana Cabascango Alba
 Universidad Politécnica Salesiana
 Carrera: Negocios Digitales
-Práctica Nº 03 – Gestión de la Calidad de Software
+
+📌 Descripción
+
+Este proyecto implementa análisis de datos del archivo sri_ventas_2024.csv mediante un módulo en Python, utilizando pruebas unitarias para validar su funcionamiento.
+Incluye además dos estadísticas adicionales, uso de la librería coverage y un reporte de cobertura.
+
+🧪 Ejecución de la Aplicación
+
+La ejecución del programa principal (app.py) muestra un resumen de ventas por provincia y permite consultar una provincia específica.
+
+Ejemplo de salida:
+
+Ventas totales por provincia:
+    SANTA ELENA: $1473997045.48
+    LOJA: $2181115159.20
+    ...
+Consulta por provincia:
+    Ventas de CHIMBORAZO: $1,788,637,781.38
+
+🔧 Funciones Principales (procesador.py)
+
+Cálculo de ventas totales por provincia
+
+Consulta de ventas por provincia
+
+Exportaciones totales por mes (nueva)
+
+Provincia con mayor volumen de importaciones (nueva)
+
+Todas las funciones están validadas mediante pruebas unitarias.
+
+🧪 Pruebas Unitarias
+
+Las pruebas están ubicadas en tests/test_procesador.py y verifican:
+
+Retorno correcto de diccionarios
+
+Cantidad esperada de provincias
+
+Valores positivos en ventas
+
+Manejo de provincias inexistentes
+
+Nuevas estadísticas implementadas
+
+Para ejecutarlas:
+
+python -m unittest discover
+
+📊 Cobertura de Código (coverage)
+
+Ejecución:
+
+coverage run -m unittest discover
+coverage report
+
+
+Resultado obtenido:
+
+TOTAL: 96% de cobertura
+
+
+También se genera un reporte HTML con:
+
+coverage html
+
+📁 Estructura del Proyecto
+practica-03/
+├── datos/
+│   └── sri_ventas_2024.csv
+├── src/
+│   └── procesador.py
+├── tests/
+│   └── test_procesador.py
+├── venv/
+├── app.py
+└── README.md
+
+✔️ Conclusión
+
+La práctica demuestra el uso adecuado de pruebas unitarias en Python, validación de datos y medición de cobertura de código. Se implementaron correctamente dos estadísticas adicionales y se alcanzó un nivel de cobertura superior al requerido.
+
+

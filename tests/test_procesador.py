@@ -28,3 +28,12 @@ class TestAnalizador(unittest.TestCase):
     def test_provincia_existente(self):
         resultado = self.analizador.ventas_por_provincia("PICHINCHA")
         self.assertGreater(resultado, 0)
+    def test_exportaciones_por_mes(self):
+        resultado = self.analizador.exportaciones_por_mes()
+        self.assertIsInstance(resultado, dict)
+        self.assertTrue(all(mes > 0 for mes in resultado.keys()))
+
+    def test_provincia_mayor_importacion(self):
+        resultado = self.analizador.provincia_mayor_importacion()
+        self.assertIsInstance(resultado, str)
+        self.assertTrue(len(resultado) > 0)

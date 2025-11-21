@@ -53,3 +53,33 @@ class Analizador:
             raise KeyError(f"La provincia '{nombre}' no existe en el dataset.")
 
         return totales[nombre_normalizado]
+    def exportaciones_por_mes(self):
+        """
+        Devuelve un diccionario con el total de exportaciones por mes.
+        Ejemplo: {1: 20000.50, 2: 39100.00}
+        """
+        resultado = {}
+
+        for fila in self.datos:
+            mes = int(fila["MES"])
+            export = float(fila["EXPORTACIONES"])
+
+            resultado[mes] = resultado.get(mes, 0.0) + export
+
+        return resultado
+    def provincia_mayor_importacion(self):
+        """
+        Retorna la provincia con mayor volumen total de importaciones.
+        """
+        importaciones = {}
+
+        for fila in self.datos:
+            provincia = fila["PROVINCIA"]
+            valor = float(fila["IMPORTACIONES"])
+
+            importaciones[provincia] = importaciones.get(provincia, 0.0) + valor
+
+        if not importaciones:
+            return None
+
+        return max(importaciones, key=importaciones.get)
